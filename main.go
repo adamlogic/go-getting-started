@@ -25,5 +25,8 @@ func main() {
 		c.HTML(http.StatusOK, "index.tmpl.html", nil)
 	})
 
+	router.POST("/noop", func(c *gin.Context) {
+	})
+
 	router.Run(":" + port)
 }
