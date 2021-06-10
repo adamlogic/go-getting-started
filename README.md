@@ -41,6 +41,18 @@ or
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 
+## Heroku tools
+
+```sh
+# Monitor service times in router logs
+heroku logs -t -d router | agrind \
+  '*
+    | parse "T*.*" as time, msg
+    | logfmt from msg
+    | avg(service), p95(service), p99(service), count by time
+    | sort by time desc'
+```
+
 ## Documentation
 
 For more information about using Go on Heroku, see these Dev Center articles:
